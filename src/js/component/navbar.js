@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "/workspace/react-hello-webapp/src/styles/navbar.css";
+import "/workspace/StarWars_Blog/src/styles/navbar.css";
 
 export const Navbar = () => {
 	return (
@@ -15,6 +15,7 @@ export const Navbar = () => {
 			</Link>
 			<div className="ml-auto">
 				<div className="ddicon dropdown">
+					<i className="fas fa-heart" style={{ color: "white", fontSize: "20px" }} />
 					<button
 						className="btn dropdown-toggle ddtext"
 						type="button"

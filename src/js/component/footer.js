@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import "/workspace/react-hello-webapp/src/styles/footer.css";
+import "/workspace/StarWars_Blog/src/styles/footer.css";
 
 export const Footer = () => (
 	<footer className="footerPage row">
 		<div className="col-2 flc">
-			<div className="row"> Fan Art from Daniel Ocock </div>{" "}
+			<div className="row"> Fan Art from Daniel Ocock </div>
 			<div className="row"> TM © Lucasfilm Ltd. All Rights Reserved </div>
 		</div>
 		<div className="col-10">
