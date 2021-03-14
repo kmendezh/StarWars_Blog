@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "/workspace/StarWars_Blog/src/styles/cards.css";
 
 const urlImage = "https://sm.ign.com/ign_es/screenshot/default/mandalorian-baby-yoda-macarons_1nqk.jpg";
 const urlPlanetImage = "https://i.pinimg.com/originals/e7/e6/6e/e7e66e9a5d91ee1b10cf2caa5d046590.jpg";
@@ -7,7 +8,7 @@ const urlVehicle = "https://i.pinimg.com/originals/13/ee/70/13ee7069b749b7cfb394
 
 export function CardCharacter(prop) {
 	return (
-		<div className="card" style={{ marginBottom: "20px" }}>
+		<div className="card mr-2" style={{ marginBottom: "20px" }}>
 			<img
 				className="card-img-top"
 				src={urlImage}
@@ -38,7 +39,7 @@ export function CardCharacter(prop) {
 
 export function CardPlanet(prop) {
 	return (
-		<div className="card" style={{ marginBottom: "20px" }}>
+		<div className="card mr-2" style={{ marginBottom: "20px" }}>
 			<img
 				className="card-img-top"
 				src={urlPlanetImage}
@@ -69,7 +70,7 @@ export function CardPlanet(prop) {
 
 export function CardVehicle(prop) {
 	return (
-		<div className="card" style={{ marginBottom: "20px" }}>
+		<div className="card mr-2" style={{ marginBottom: "20px" }}>
 			<img
 				className="card-img-top"
 				src={urlVehicle}
