@@ -5,6 +5,7 @@ import "/workspace/StarWars_Blog/src/styles/cards.css";
 const urlImage = "https://sm.ign.com/ign_es/screenshot/default/mandalorian-baby-yoda-macarons_1nqk.jpg";
 const urlPlanetImage = "https://i.pinimg.com/originals/e7/e6/6e/e7e66e9a5d91ee1b10cf2caa5d046590.jpg";
 const urlVehicle = "https://i.pinimg.com/originals/13/ee/70/13ee7069b749b7cfb394bdab3687ae57.jpg";
+const urlImageDescription = "https://radiorumba.fm/wp-content/uploads/2015/11/DarthVader-675x450.jpg";
 
 export function CardCharacter(prop) {
 	return (
@@ -94,6 +95,25 @@ export function CardVehicle(prop) {
 						</a>
 					</div>
 				</div>
+			</div>
+		</div>
+	);
+}
+
+export function CardDescription() {
+	return (
+		<div className="row">
+			<div className="col-6">
+				<img src={urlImageDescription} />
+			</div>
+			<div className="col-6">
+				<h1>
+					<strong> Title </strong>
+				</h1>
+				<p className="textDescription">
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel eros lacus. Sed convallis justo
+					quis scelerisque ullamcorper. Etiam cursus.
+				</p>
 			</div>
 		</div>
 	);

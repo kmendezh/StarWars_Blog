@@ -1,5 +1,6 @@
 import React from "react";
+import { CardDescription } from "/workspace/StarWars_Blog/src/js/component/cards.js";
 
 export function CardInfo() {
-	return <h1> Card Info Page </h1>;
+	return <CardDescription />;
 }
