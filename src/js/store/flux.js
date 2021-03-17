@@ -12,7 +12,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+
+			planetsArray: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -37,6 +39,40 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
+			},
+
+			getPlanetFetch: async () => {
+				// Define initial amount of items to retrieve and page
+				let page = "1";
+				let limit = "6";
+				let limitLength = 6;
+				// URLs of the SWAPI
+				let urlStringPlanet = "https://www.swapi.tech/api/planets/";
+
+				// GET Request Header
+				let requestOptions = {
+					method: "GET",
+					redirect: "follow"
+				};
+
+				// Get Store
+				const store = getStore();
+				let tmpArray = store.planetsArray;
+				let tmpUrl = "";
+				for (let i = 0; i < limitLength; i++) {
+					tmpUrl = urlStringPlanet + (i + 1).toString();
+					console.log(tmpUrl);
+					await fetch(tmpUrl, requestOptions)
+						.then(response => response.json())
+						.then(result => {
+							tmpArray.push(result);
+						})
+						.catch(error => console.log("error", error));
+				}
+
+				//reset the global store
+				console.log(tmpArray);
+				setStore({ tmpArray: tmpArray });
 			}
 		}
 	};
