@@ -8,6 +8,14 @@ import { Context } from "../store/appContext";
 export const Home = () => {
 	// Get Store
 	const { store, actions } = useContext(Context);
+	console.log("Home:");
+	console.log(store.peopleArray);
+
+	// Planet Array
+	let planetCards = store.planetsArray.map(element => <CardPlanet key={element.result._id} planetInfo={element} />);
+
+	// People Array
+	let peopleCards = store.peopleArray.map(element => <CardCharacter key={element.result._id} peopleInfo={element} />);
 
 	return (
 		<div className="flexBox">
@@ -16,28 +24,14 @@ export const Home = () => {
 				<i className="fab fa-jedi-order" style={{ color: "white", fontSize: "40px" }} />
 			</div>
 
-			<div className="flexContainer">
-				<CardCharacter title="Anakin" />
-				<CardCharacter title="C3PO" />
-				<CardCharacter title="Obi-Wan-Kenobi" />
-				<CardCharacter title="Darth Vader" />
-				<CardCharacter title="Yoda" />
-				<CardCharacter title="Padme" />
-			</div>
+			<div className="flexContainer">{peopleCards}</div>
 
 			<div className="flexHeader">
 				<h1> Planets </h1>
 				<i className="fas fa-globe-americas" style={{ color: "white", fontSize: "40px" }} />
 			</div>
 
-			<div className="flexContainer">
-				<CardPlanet title="Tatooine" />
-				<CardPlanet title="Coruscant" />
-				<CardPlanet title="Naboo" />
-				<CardPlanet title="Hoth" />
-				<CardPlanet title="Mustafar" />
-				<CardPlanet title="Kamino" />
-			</div>
+			<div className="flexContainer">{planetCards}</div>
 
 			<div className="flexHeader">
 				<h1> Vehicles </h1>

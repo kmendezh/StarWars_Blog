@@ -7,6 +7,7 @@ const urlPlanetImage = "https://i.pinimg.com/originals/e7/e6/6e/e7e66e9a5d91ee1b
 const urlVehicle = "https://i.pinimg.com/originals/13/ee/70/13ee7069b749b7cfb394bdab3687ae57.jpg";
 const urlImageDescription = "https://radiorumba.fm/wp-content/uploads/2015/11/DarthVader-675x450.jpg";
 
+// Function to print the character card
 export function CardCharacter(prop) {
 	return (
 		<div className="card mr-2" style={{ marginBottom: "20px" }}>
@@ -17,7 +18,7 @@ export function CardCharacter(prop) {
 				style={{ width: "100%", height: "200px" }}
 			/>
 			<div className="card-body">
-				<h4 className="card-title">{prop.title}</h4>
+				<h4 className="card-title">{prop.peopleInfo.result.properties.name}</h4>
 				<p className="card-text">
 					Some quick example text to build on the card title and make up the bulk of the cards content.
 				</p>
@@ -38,6 +39,7 @@ export function CardCharacter(prop) {
 	);
 }
 
+// Function to print the planet card
 export function CardPlanet(prop) {
 	return (
 		<div className="card mr-2" style={{ marginBottom: "20px" }}>
@@ -48,7 +50,7 @@ export function CardPlanet(prop) {
 				style={{ width: "100%", height: "200px" }}
 			/>
 			<div className="card-body">
-				<h4 className="card-title">{prop.title}</h4>
+				<h4 className="card-title">{prop.planetInfo.result.properties.name}</h4>
 				<p className="card-text">
 					Some quick example text to build on the card title and make up the bulk of the cards content.
 				</p>

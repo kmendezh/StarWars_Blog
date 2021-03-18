@@ -1,3 +1,4 @@
+// State definition
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -14,7 +15,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			],
 
-			planetsArray: []
+			planetsArray: [],
+
+			peopleArray: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -39,6 +42,40 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
+			},
+
+			getPeopleFetch: async () => {
+				// Define initial amount of items to retrieve and page
+				let page = "1";
+				let limit = "6";
+				let limitLength = 6;
+				// URLs of the SWAPI
+				let urlStringPeople = "https://www.swapi.tech/api/people/";
+
+				// GET Request Header
+				let requestOptions = {
+					method: "GET",
+					redirect: "follow"
+				};
+
+				// Get Store
+				const store = getStore();
+				let tmpArray = store.peopleArray;
+				let tmpUrl = "";
+				for (let i = 0; i < limitLength; i++) {
+					tmpUrl = urlStringPeople + (i + 1).toString();
+					console.log(tmpUrl);
+					await fetch(tmpUrl, requestOptions)
+						.then(response => response.json())
+						.then(result => {
+							tmpArray.push(result);
+						})
+						.catch(error => console.log("error", error));
+				}
+
+				//reset the global store
+				console.log(tmpArray);
+				setStore({ tmpArray: tmpArray });
 			},
 
 			getPlanetFetch: async () => {
