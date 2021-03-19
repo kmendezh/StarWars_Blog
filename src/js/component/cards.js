@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "/workspace/StarWars_Blog/src/styles/cards.css";
 
 const urlImage = "https://sm.ign.com/ign_es/screenshot/default/mandalorian-baby-yoda-macarons_1nqk.jpg";
@@ -20,7 +20,15 @@ export function CardCharacter(prop) {
 			<div className="card-body">
 				<h4 className="card-title">{prop.peopleInfo.result.properties.name}</h4>
 				<p className="card-text">
-					Some quick example text to build on the card title and make up the bulk of the cards content.
+					<div className="row">
+						<p> Height: {prop.peopleInfo.result.properties.height}</p>
+					</div>
+					<div className="row">
+						<p> Mass: {prop.peopleInfo.result.properties.mass}</p>
+					</div>
+					<div className="row">
+						<p> Gender: {prop.peopleInfo.result.properties.gender}</p>
+					</div>
 				</p>
 				<div className="row">
 					<div className="col-8">
@@ -52,7 +60,15 @@ export function CardPlanet(prop) {
 			<div className="card-body">
 				<h4 className="card-title">{prop.planetInfo.result.properties.name}</h4>
 				<p className="card-text">
-					Some quick example text to build on the card title and make up the bulk of the cards content.
+					<div className="row">
+						<p> Diameter: {prop.planetInfo.result.properties.diameter}</p>
+					</div>
+					<div className="row">
+						<p> Population: {prop.planetInfo.result.properties.population}</p>
+					</div>
+					<div className="row">
+						<p> Climate: {prop.planetInfo.result.properties.climate}</p>
+					</div>
 				</p>
 				<div className="row">
 					<div className="col-8">
@@ -81,9 +97,17 @@ export function CardVehicle(prop) {
 				style={{ width: "100%", height: "200px" }}
 			/>
 			<div className="card-body">
-				<h4 className="card-title">{prop.title}</h4>
+				<h4 className="card-title">{prop.starshipsInfo.result.properties.name}</h4>
 				<p className="card-text">
-					Some quick example text to build on the card title and make up the bulk of the cards content.
+					<div className="row">
+						<p> Model: {prop.starshipsInfo.result.properties.model}</p>
+					</div>
+					<div className="row">
+						<p> Length: {prop.starshipsInfo.result.properties.length}</p>
+					</div>
+					<div className="row">
+						<p> Crew: {prop.starshipsInfo.result.properties.crew}</p>
+					</div>
 				</p>
 				<div className="row">
 					<div className="col-8">

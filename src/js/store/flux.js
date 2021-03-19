@@ -17,7 +17,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			planetsArray: [],
 
-			peopleArray: []
+			peopleArray: [],
+
+			starshipsArray: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -68,13 +70,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 					await fetch(tmpUrl, requestOptions)
 						.then(response => response.json())
 						.then(result => {
-							tmpArray.push(result);
+							result != undefined ? tmpArray.push(result) : console.log("Undefined message");
 						})
 						.catch(error => console.log("error", error));
 				}
 
 				//reset the global store
-				console.log(tmpArray);
 				setStore({ tmpArray: tmpArray });
 			},
 
@@ -102,7 +103,40 @@ const getState = ({ getStore, getActions, setStore }) => {
 					await fetch(tmpUrl, requestOptions)
 						.then(response => response.json())
 						.then(result => {
-							tmpArray.push(result);
+							result != undefined ? tmpArray.push(result) : console.log("Undefined message");
+						})
+						.catch(error => console.log("error", error));
+				}
+
+				//reset the global store
+				setStore({ tmpArray: tmpArray });
+			},
+
+			getStarShipsFetch: async () => {
+				// Define initial amount of items to retrieve and page
+				let page = "1";
+				let limit = "7";
+				let limitLength = 11; // Some indexes never worked like /1 and /4
+				// URLs of the SWAPI
+				let urlStringStarships = "https://www.swapi.tech/api/starships/";
+
+				// GET Request Header
+				let requestOptions = {
+					method: "GET",
+					redirect: "follow"
+				};
+
+				// Get Store
+				const store = getStore();
+				let tmpArray = store.starshipsArray;
+				let tmpUrl = "";
+				for (let i = 1; i < limitLength; i++) {
+					tmpUrl = urlStringStarships + (i + 1).toString();
+					console.log(tmpUrl);
+					await fetch(tmpUrl, requestOptions)
+						.then(response => response.json())
+						.then(result => {
+							result.message != "not found" ? tmpArray.push(result) : console.log("Undefined message");
 						})
 						.catch(error => console.log("error", error));
 				}

@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "/workspace/StarWars_Blog/src/styles/navbar.css";
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
 
 export const Navbar = () => {
+	// Variables needed to control the dropdown
+	const [dropdownOpen, setDropdownOpen] = useState(false);
+	const toggle = () => setDropdownOpen(prevState => !prevState);
+
 	return (
 		<nav
 			style={{
@@ -15,24 +20,23 @@ export const Navbar = () => {
 			</Link>
 			<div className="ml-auto">
 				<div className="ddicon dropdown">
-					<i className="fas fa-heart" style={{ color: "white", fontSize: "20px" }} />
-					<button
-						className="btn dropdown-toggle ddtext"
-						type="button"
-						id="dropdownMenu1"
-						data-toggle="dropdown"
-						aria-haspopup="true"
-						aria-expanded="false">
-						Favorites
-					</button>
-					<div className="dropdown-menu" aria-labelledby="dropdownMenu1">
-						<a className="dropdown-item" href="#!">
-							Action
-						</a>
-						<a className="dropdown-item" href="#!">
-							Another action
-						</a>
-					</div>
+					<Dropdown isOpen={dropdownOpen} toggle={toggle}>
+						<DropdownToggle className="ddtext" caret>
+							Favorites
+							<span className="fa-stack">
+								<i className="fas fa-heart fa-stack-1x" style={{ color: "white" }} />
+								<i className="fa-stack-1x" style={{ color: "black", fontSize: "18px" }}>
+									<span>
+										<strong>0</strong>
+									</span>
+								</i>
+							</span>
+						</DropdownToggle>
+						<DropdownMenu>
+							<DropdownItem header>Header</DropdownItem>
+							<DropdownItem>Some Action</DropdownItem>
+						</DropdownMenu>
+					</Dropdown>
 				</div>
 			</div>
 		</nav>

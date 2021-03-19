@@ -9,13 +9,18 @@ export const Home = () => {
 	// Get Store
 	const { store, actions } = useContext(Context);
 	console.log("Home:");
-	console.log(store.peopleArray);
+	console.log(store.starshipsArray);
 
 	// Planet Array
 	let planetCards = store.planetsArray.map(element => <CardPlanet key={element.result._id} planetInfo={element} />);
 
 	// People Array
 	let peopleCards = store.peopleArray.map(element => <CardCharacter key={element.result._id} peopleInfo={element} />);
+
+	// StarShips/Vehicles Array
+	let starshipsCards = store.starshipsArray.map(element => (
+		<CardVehicle key={element.result._id} starshipsInfo={element} />
+	));
 
 	return (
 		<div className="flexBox">
@@ -38,14 +43,7 @@ export const Home = () => {
 				<i className="fas fa-fighter-jet" style={{ color: "white", fontSize: "40px" }} />
 			</div>
 
-			<div className="flexContainer">
-				<CardVehicle title="X Wing" />
-				<CardVehicle title="Millennium Falcon" />
-				<CardVehicle title="TIE Fighter" />
-				<CardVehicle title="Slave I" />
-				<CardVehicle title="U Wing" />
-				<CardVehicle title="Y Wing" />
-			</div>
+			<div className="flexContainer">{starshipsCards}</div>
 		</div>
 	);
 };
