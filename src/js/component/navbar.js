@@ -1,12 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import "/workspace/StarWars_Blog/src/styles/navbar.css";
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
+import { Context } from "/workspace/StarWars_Blog/src/js/store/appContext.js";
 
 export const Navbar = () => {
 	// Variables needed to control the dropdown
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 	const toggle = () => setDropdownOpen(prevState => !prevState);
+
+	// Get the store data
+	const { store, actions } = useContext(Context);
+
+	// Dropdown Item Format
+	const ddFavoriteItems = store.arrayOfFavorites.map((element, index) => (
+		<div className="ddicon" key={index.toString()}>
+			<div className="row">
+				<div className="col-8">
+					<DropdownItem>{element}</DropdownItem>
+				</div>
+				<div className="col-4">
+					<DropdownItem onClick={() => actions.removeFavorites(index)}>
+						<i className="fas fa-trash" />
+					</DropdownItem>
+				</div>
+			</div>
+		</div>
+	));
 
 	return (
 		<nav
@@ -27,14 +47,14 @@ export const Navbar = () => {
 								<i className="fas fa-heart fa-stack-1x" style={{ color: "white" }} />
 								<i className="fa-stack-1x" style={{ color: "black", fontSize: "18px" }}>
 									<span>
-										<strong>0</strong>
+										<strong>{store.arrayOfFavorites.length}</strong>
 									</span>
 								</i>
 							</span>
 						</DropdownToggle>
 						<DropdownMenu>
-							<DropdownItem header>Header</DropdownItem>
-							<DropdownItem>Some Action</DropdownItem>
+							<DropdownItem header>Items stored</DropdownItem>
+							{ddFavoriteItems}
 						</DropdownMenu>
 					</Dropdown>
 				</div>

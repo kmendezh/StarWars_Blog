@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import "/workspace/StarWars_Blog/src/styles/cards.css";
+import { func } from "prop-types";
+import { Context } from "../store/appContext";
 
 const urlImage = "https://sm.ign.com/ign_es/screenshot/default/mandalorian-baby-yoda-macarons_1nqk.jpg";
 const urlPlanetImage = "https://i.pinimg.com/originals/e7/e6/6e/e7e66e9a5d91ee1b10cf2caa5d046590.jpg";
@@ -9,6 +11,8 @@ const urlImageDescription = "https://radiorumba.fm/wp-content/uploads/2015/11/Da
 
 // Function to print the character card
 export function CardCharacter(prop) {
+	// Get Store
+	const { store, actions } = useContext(Context);
 	return (
 		<div className="card mr-2" style={{ marginBottom: "20px" }}>
 			<img
@@ -19,7 +23,7 @@ export function CardCharacter(prop) {
 			/>
 			<div className="card-body">
 				<h4 className="card-title">{prop.peopleInfo.result.properties.name}</h4>
-				<p className="card-text">
+				<div className="card-text">
 					<div className="row">
 						<p> Height: {prop.peopleInfo.result.properties.height}</p>
 					</div>
@@ -29,7 +33,7 @@ export function CardCharacter(prop) {
 					<div className="row">
 						<p> Gender: {prop.peopleInfo.result.properties.gender}</p>
 					</div>
-				</p>
+				</div>
 				<div className="row">
 					<div className="col-8">
 						<Link to={"/character/" + prop.peopleInfo.result._id}>
@@ -37,7 +41,10 @@ export function CardCharacter(prop) {
 						</Link>
 					</div>
 					<div className="col-4">
-						<a href="#!" className="btn btn-secondary">
+						<a
+							href="#!"
+							className="btn btn-secondary"
+							onClick={() => actions.addFavorites(prop.peopleInfo.result.properties.name)}>
 							<i className="fas fa-heart" style={{ color: "white", fontSize: "20px" }} />
 						</a>
 					</div>
@@ -49,6 +56,8 @@ export function CardCharacter(prop) {
 
 // Function to print the planet card
 export function CardPlanet(prop) {
+	// Get Store
+	const { store, actions } = useContext(Context);
 	return (
 		<div className="card mr-2" style={{ marginBottom: "20px" }}>
 			<img
@@ -59,7 +68,7 @@ export function CardPlanet(prop) {
 			/>
 			<div className="card-body">
 				<h4 className="card-title">{prop.planetInfo.result.properties.name}</h4>
-				<p className="card-text">
+				<div className="card-text">
 					<div className="row">
 						<p> Diameter: {prop.planetInfo.result.properties.diameter}</p>
 					</div>
@@ -69,7 +78,7 @@ export function CardPlanet(prop) {
 					<div className="row">
 						<p> Climate: {prop.planetInfo.result.properties.climate}</p>
 					</div>
-				</p>
+				</div>
 				<div className="row">
 					<div className="col-8">
 						<Link to={"/planet/" + prop.planetInfo.result._id}>
@@ -77,7 +86,10 @@ export function CardPlanet(prop) {
 						</Link>
 					</div>
 					<div className="col-4">
-						<a href="#!" className="btn btn-secondary">
+						<a
+							href="#!"
+							className="btn btn-secondary"
+							onClick={() => actions.addFavorites(prop.planetInfo.result.properties.name)}>
 							<i className="fas fa-heart" style={{ color: "white", fontSize: "20px" }} />
 						</a>
 					</div>
@@ -89,6 +101,8 @@ export function CardPlanet(prop) {
 
 // Function to print the Vehicle Card
 export function CardVehicle(prop) {
+	// Get Store
+	const { store, actions } = useContext(Context);
 	return (
 		<div className="card mr-2" style={{ marginBottom: "20px" }}>
 			<img
@@ -99,7 +113,7 @@ export function CardVehicle(prop) {
 			/>
 			<div className="card-body">
 				<h4 className="card-title">{prop.starshipsInfo.result.properties.name}</h4>
-				<p className="card-text">
+				<div className="card-text">
 					<div className="row">
 						<p> Model: {prop.starshipsInfo.result.properties.model}</p>
 					</div>
@@ -109,7 +123,7 @@ export function CardVehicle(prop) {
 					<div className="row">
 						<p> Crew: {prop.starshipsInfo.result.properties.crew}</p>
 					</div>
-				</p>
+				</div>
 				<div className="row">
 					<div className="col-8">
 						<Link to={"/starship/" + prop.starshipsInfo.result._id}>
@@ -117,7 +131,10 @@ export function CardVehicle(prop) {
 						</Link>
 					</div>
 					<div className="col-4">
-						<a href="#!" className="btn btn-secondary">
+						<a
+							href="#!"
+							className="btn btn-secondary"
+							onClick={() => actions.addFavorites(prop.starshipsInfo.result.properties.name)}>
 							<i className="fas fa-heart" style={{ color: "white", fontSize: "20px" }} />
 						</a>
 					</div>

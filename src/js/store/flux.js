@@ -19,7 +19,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			peopleArray: [],
 
-			starshipsArray: []
+			starshipsArray: [],
+
+			arrayOfFavorites: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -44,6 +46,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
+			},
+
+			addFavorites: cardName => {
+				// Get the store
+				const store = getStore();
+				let tmpArray = store.arrayOfFavorites;
+				tmpArray.push(cardName);
+				//reset the global store
+				setStore({ tmpArray: tmpArray });
+			},
+
+			removeFavorites: index => {
+				// Get the store
+				const store = getStore();
+				let tmpArray = store.arrayOfFavorites;
+				let auxArray = [];
+				for (let i = 0; i < store.arrayOfFavorites.length; i++) {
+					// Copy all the data except the item to be removed
+					if (i != index) {
+						auxArray.push(store.arrayOfFavorites[i]);
+					}
+				}
+				tmpArray = auxArray;
+				//reset the global store
+				setStore({ arrayOfFavorites: tmpArray });
+				console.log(store.arrayOfFavorites);
 			},
 
 			getPeopleFetch: async () => {
