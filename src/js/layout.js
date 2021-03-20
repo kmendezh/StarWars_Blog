@@ -6,6 +6,9 @@ import { Home } from "./views/home";
 import { Demo } from "./views/demo";
 import { Single } from "./views/single";
 import { CardInfo } from "./views/cardInfo";
+import { CharacterDescription } from "./views/cardInfo";
+import { PlanetDescription } from "./views/cardInfo";
+import { StarshipDescription } from "./views/cardInfo";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
@@ -34,6 +37,15 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/cardInfo">
 							<CardInfo />
+						</Route>
+						<Route exact path="/character/:id">
+							<CharacterDescription />
+						</Route>
+						<Route exact path="/planet/:id">
+							<PlanetDescription />
+						</Route>
+						<Route exact path="/starship/:id">
+							<StarshipDescription />
 						</Route>
 						<Route>
 							<h1>Not found!</h1>

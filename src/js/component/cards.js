@@ -32,7 +32,7 @@ export function CardCharacter(prop) {
 				</p>
 				<div className="row">
 					<div className="col-8">
-						<Link to={"/cardInfo"}>
+						<Link to={"/character/" + prop.peopleInfo.result._id}>
 							<div className="btn btn-secondary"> More information </div>
 						</Link>
 					</div>
@@ -72,7 +72,7 @@ export function CardPlanet(prop) {
 				</p>
 				<div className="row">
 					<div className="col-8">
-						<Link to={"/cardInfo"}>
+						<Link to={"/planet/" + prop.planetInfo.result._id}>
 							<div className="btn btn-secondary"> More information </div>
 						</Link>
 					</div>
@@ -87,6 +87,7 @@ export function CardPlanet(prop) {
 	);
 }
 
+// Function to print the Vehicle Card
 export function CardVehicle(prop) {
 	return (
 		<div className="card mr-2" style={{ marginBottom: "20px" }}>
@@ -111,7 +112,7 @@ export function CardVehicle(prop) {
 				</p>
 				<div className="row">
 					<div className="col-8">
-						<Link to={"/cardInfo"}>
+						<Link to={"/starship/" + prop.starshipsInfo.result._id}>
 							<div className="btn btn-secondary"> More information </div>
 						</Link>
 					</div>

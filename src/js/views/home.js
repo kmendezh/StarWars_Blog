@@ -8,8 +8,6 @@ import { Context } from "../store/appContext";
 export const Home = () => {
 	// Get Store
 	const { store, actions } = useContext(Context);
-	console.log("Home:");
-	console.log(store.starshipsArray);
 
 	// Planet Array
 	let planetCards = store.planetsArray.map(element => <CardPlanet key={element.result._id} planetInfo={element} />);
