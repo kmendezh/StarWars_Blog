@@ -21,20 +21,20 @@ export function CharacterDescription(props) {
 	// Get the store data
 	const { store, actions } = useContext(Context);
 
-	// Store local data in case of page refresh
-	if (params.id != undefined) {
-		localStorage.setItem("charID", params.id);
-	} else {
-		params.id = localStorage.getItem("charID");
-	}
-
 	// Find the element to be displayed
 	const findId = obj => {
 		return obj.result._id == params.id;
 	};
 
 	let characterToBeDisplayed = store.peopleArray.find(findId);
-	console.log("Card");
+
+	// Store local data in case of page refresh
+	if (store.peopleArray.length != 0) {
+		localStorage.setItem("obj", JSON.stringify(characterToBeDisplayed));
+	} else {
+		characterToBeDisplayed = JSON.parse(localStorage.getItem("obj"));
+	}
+	console.log("Character");
 	console.log(characterToBeDisplayed);
 
 	// Render the information
