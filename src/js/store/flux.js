@@ -21,7 +21,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			starshipsArray: [],
 
-			arrayOfFavorites: []
+			arrayOfFavorites: [],
+
+			indexArray: [
+				{ peopleStartIndex: 0, peopleIndex: 6 },
+				{ type: "Planet", planetIndex: 6 },
+				{ type: "Starship", starshipIndex: 11 }
+			]
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -46,6 +52,31 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
+			},
+
+			showMore: type => {
+				// Get the store
+				const store = getStore();
+				let position = store.indexArray;
+
+				// Get the actions
+				const actions = getActions();
+
+				// Increase the number of items fetched by 6
+				if (type == "People") {
+					position[0].peopleStartIndex = position[0].peopleIndex;
+					position[0].peopleIndex = position[0].peopleIndex + 6;
+					setStore({ indexArray: position });
+					actions.getPeopleFetch();
+				} else if (type == "Planet") {
+					position[1].planetIndex = position[1].planetIndex + 6;
+					setStore({ indexArray: position });
+					actions.getPlanetFetch();
+				} else {
+					position[2].starshipIndex = position[2].starshipIndex + 6;
+					setStore({ indexArray: position });
+					actions.getStarShipsFetch();
+				}
 			},
 
 			addFavorites: cardName => {
@@ -75,10 +106,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			getPeopleFetch: async () => {
+				// Get Store
+				const store = getStore();
+
 				// Define initial amount of items to retrieve and page
-				let page = "1";
-				let limit = "6";
-				let limitLength = 6;
+				let startIdx = store.indexArray[0].peopleStartIndex;
+				let limitLength = store.indexArray[0].peopleIndex;
+				console.log("Limit Length:");
+				console.log(limitLength);
 				// URLs of the SWAPI
 				let urlStringPeople = "https://www.swapi.tech/api/people/";
 
@@ -88,17 +123,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 					redirect: "follow"
 				};
 
-				// Get Store
-				const store = getStore();
 				let tmpArray = store.peopleArray;
 				let tmpUrl = "";
-				for (let i = 0; i < limitLength; i++) {
+				for (let i = startIdx; i < limitLength; i++) {
 					tmpUrl = urlStringPeople + (i + 1).toString();
 					console.log(tmpUrl);
 					await fetch(tmpUrl, requestOptions)
 						.then(response => response.json())
 						.then(result => {
-							result != undefined ? tmpArray.push(result) : console.log("Undefined message");
+							result.message == "ok" ? tmpArray.push(result) : console.log("Undefined message");
+							console.log(result);
 						})
 						.catch(error => console.log("error", error));
 				}
@@ -108,10 +142,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			getPlanetFetch: async () => {
+				// Get Store
+				const store = getStore();
+
 				// Define initial amount of items to retrieve and page
 				let page = "1";
 				let limit = "6";
-				let limitLength = 6;
+				let limitLength = store.indexArray[1].planetIndex;
 				// URLs of the SWAPI
 				let urlStringPlanet = "https://www.swapi.tech/api/planets/";
 
@@ -121,8 +158,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					redirect: "follow"
 				};
 
-				// Get Store
-				const store = getStore();
 				let tmpArray = store.planetsArray;
 				let tmpUrl = "";
 				for (let i = 0; i < limitLength; i++) {
@@ -131,7 +166,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					await fetch(tmpUrl, requestOptions)
 						.then(response => response.json())
 						.then(result => {
-							result != undefined ? tmpArray.push(result) : console.log("Undefined message");
+							result.message == "ok" ? tmpArray.push(result) : console.log("Undefined message");
 						})
 						.catch(error => console.log("error", error));
 				}
@@ -141,10 +176,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			getStarShipsFetch: async () => {
+				// Get Store
+				const store = getStore();
+
 				// Define initial amount of items to retrieve and page
 				let page = "1";
 				let limit = "7";
-				let limitLength = 11; // Some indexes never worked like /1 and /4
+				let limitLength = store.indexArray[2].starshipIndex; // Some indexes never worked like /1 and /4
 				// URLs of the SWAPI
 				let urlStringStarships = "https://www.swapi.tech/api/starships/";
 
@@ -154,8 +192,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					redirect: "follow"
 				};
 
-				// Get Store
-				const store = getStore();
 				let tmpArray = store.starshipsArray;
 				let tmpUrl = "";
 				for (let i = 1; i < limitLength; i++) {
@@ -164,7 +200,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					await fetch(tmpUrl, requestOptions)
 						.then(response => response.json())
 						.then(result => {
-							result.message != "not found" ? tmpArray.push(result) : console.log("Undefined message");
+							result.message == "ok" ? tmpArray.push(result) : console.log("Undefined message");
 						})
 						.catch(error => console.log("error", error));
 				}

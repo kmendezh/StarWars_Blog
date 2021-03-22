@@ -30,7 +30,11 @@ export const Home = () => {
 			<div className="flexContainer">{peopleCards}</div>
 
 			<div className="d-flex justify-content-center mt-3 mb-3">
-				<button type="button" className="btn btn-secondary" style={{ width: "15%" }}>
+				<button
+					type="button"
+					className="btn btn-secondary"
+					style={{ width: "15%" }}
+					onClick={() => actions.showMore("People")}>
 					Show More
 				</button>
 			</div>
