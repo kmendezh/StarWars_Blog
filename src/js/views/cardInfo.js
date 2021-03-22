@@ -34,8 +34,6 @@ export function CharacterDescription(props) {
 	} else {
 		characterToBeDisplayed = JSON.parse(localStorage.getItem("obj"));
 	}
-	console.log("Character");
-	console.log(characterToBeDisplayed);
 
 	// Render the information
 	return (
@@ -109,6 +107,13 @@ export function PlanetDescription(props) {
 	};
 
 	let PlanetToBeDisplayed = store.planetsArray.find(findId);
+
+	// Store local data in case of page refresh
+	if (store.planetsArray.length != 0) {
+		localStorage.setItem("obj", JSON.stringify(PlanetToBeDisplayed));
+	} else {
+		PlanetToBeDisplayed = JSON.parse(localStorage.getItem("obj"));
+	}
 
 	// Render the information
 	return (
@@ -190,6 +195,15 @@ export function StarshipDescription(props) {
 	};
 
 	let StarshipToBeDisplayed = store.starshipsArray.find(findId);
+
+	// Store local data in case of page refresh
+	if (store.starshipsArray.length != 0) {
+		localStorage.setItem("obj", JSON.stringify(StarshipToBeDisplayed));
+	} else {
+		StarshipToBeDisplayed = JSON.parse(localStorage.getItem("obj"));
+	}
+	console.log("Vehicle error");
+	console.log(StarshipToBeDisplayed);
 
 	// Render the information
 	return (

@@ -29,6 +29,12 @@ export const Home = () => {
 
 			<div className="flexContainer">{peopleCards}</div>
 
+			<div className="d-flex justify-content-center mt-3 mb-3">
+				<button type="button" className="btn btn-secondary" style={{ width: "15%" }}>
+					Show More
+				</button>
+			</div>
+
 			<div className="flexHeader">
 				<h1> Planets </h1>
 				<i className="fas fa-globe-americas" style={{ color: "white", fontSize: "40px" }} />
