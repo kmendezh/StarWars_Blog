@@ -25,8 +25,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			indexArray: [
 				{ peopleStartIndex: 0, peopleIndex: 6 },
-				{ type: "Planet", planetIndex: 6 },
-				{ type: "Starship", starshipIndex: 11 }
+				{ planetStartIndex: 0, planetIndex: 6 },
+				{ starshipStartIndex: 1, starshipIndex: 11 }
 			]
 		},
 		actions: {
@@ -69,10 +69,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({ indexArray: position });
 					actions.getPeopleFetch();
 				} else if (type == "Planet") {
+					position[1].planetStartIndex = position[1].planetIndex;
 					position[1].planetIndex = position[1].planetIndex + 6;
 					setStore({ indexArray: position });
 					actions.getPlanetFetch();
 				} else {
+					position[2].starshipStartIndex = position[2].starshipIndex;
 					position[2].starshipIndex = position[2].starshipIndex + 6;
 					setStore({ indexArray: position });
 					actions.getStarShipsFetch();
@@ -82,7 +84,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 			addFavorites: cardName => {
 				// Get the store
 				const store = getStore();
+
+				// Get actions
+				const actions = getActions();
+
 				let tmpArray = store.arrayOfFavorites;
+				// If it is already in the list, remove it
+				for (let i = 0; i < tmpArray.length; i++) {
+					if (cardName == tmpArray[i]) {
+						actions.removeFavorites(i);
+					}
+				}
 				tmpArray.push(cardName);
 				//reset the global store
 				setStore({ tmpArray: tmpArray });
@@ -146,8 +158,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const store = getStore();
 
 				// Define initial amount of items to retrieve and page
-				let page = "1";
-				let limit = "6";
+				let startIdx = store.indexArray[1].planetStartIndex;
 				let limitLength = store.indexArray[1].planetIndex;
 				// URLs of the SWAPI
 				let urlStringPlanet = "https://www.swapi.tech/api/planets/";
@@ -160,7 +171,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				let tmpArray = store.planetsArray;
 				let tmpUrl = "";
-				for (let i = 0; i < limitLength; i++) {
+				for (let i = startIdx; i < limitLength; i++) {
 					tmpUrl = urlStringPlanet + (i + 1).toString();
 					console.log(tmpUrl);
 					await fetch(tmpUrl, requestOptions)
@@ -180,8 +191,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const store = getStore();
 
 				// Define initial amount of items to retrieve and page
-				let page = "1";
-				let limit = "7";
+				let startIdx = store.indexArray[2].starshipStartIndex;
 				let limitLength = store.indexArray[2].starshipIndex; // Some indexes never worked like /1 and /4
 				// URLs of the SWAPI
 				let urlStringStarships = "https://www.swapi.tech/api/starships/";
@@ -194,7 +204,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				let tmpArray = store.starshipsArray;
 				let tmpUrl = "";
-				for (let i = 1; i < limitLength; i++) {
+				for (let i = startIdx; i < limitLength; i++) {
 					tmpUrl = urlStringStarships + (i + 1).toString();
 					console.log(tmpUrl);
 					await fetch(tmpUrl, requestOptions)

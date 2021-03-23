@@ -46,12 +46,32 @@ export const Home = () => {
 
 			<div className="flexContainer">{planetCards}</div>
 
+			<div className="d-flex justify-content-center mt-3 mb-3">
+				<button
+					type="button"
+					className="btn btn-secondary"
+					style={{ width: "15%" }}
+					onClick={() => actions.showMore("Planet")}>
+					Show More
+				</button>
+			</div>
+
 			<div className="flexHeader">
 				<h1> Vehicles </h1>
 				<i className="fas fa-fighter-jet" style={{ color: "white", fontSize: "40px" }} />
 			</div>
 
 			<div className="flexContainer">{starshipsCards}</div>
+
+			<div className="d-flex justify-content-center mt-3 mb-3">
+				<button
+					type="button"
+					className="btn btn-secondary"
+					style={{ width: "15%" }}
+					onClick={() => actions.showMore("Starship")}>
+					Show More
+				</button>
+			</div>
 		</div>
 	);
 };
