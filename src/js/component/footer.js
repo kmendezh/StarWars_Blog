@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "/workspace/StarWars_Blog/src/styles/footer.css";
+import "/workspace/StarWars_Blog_Customized_API/StarWars_Blog/src/styles/footer.css";
 
 export const Footer = () => (
 	<footer className="footerPage row">

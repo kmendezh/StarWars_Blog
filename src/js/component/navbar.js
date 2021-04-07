@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import "/workspace/StarWars_Blog/src/styles/navbar.css";
+import "/workspace/StarWars_Blog_Customized_API/StarWars_Blog/src/styles/navbar.css";
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
-import { Context } from "/workspace/StarWars_Blog/src/js/store/appContext.js";
+import { Context } from "/workspace/StarWars_Blog_Customized_API/StarWars_Blog/src/js/store/appContext.js";
 
 export const Navbar = () => {
 	// Variables needed to control the dropdown

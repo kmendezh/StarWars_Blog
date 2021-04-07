@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { CardDescription } from "/workspace/StarWars_Blog/src/js/component/cards.js";
+import { CardDescription } from "/workspace/StarWars_Blog_Customized_API/StarWars_Blog/src/js/component/cards.js";
 import { func } from "prop-types";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
