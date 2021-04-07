@@ -1,11 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
-import "/workspace/StarWars_Blog_Customized_API/StarWars_Blog/src/styles/home.css";
+import "/workspace/StarWars_Blog/src/styles/home.css";
 
-import {
-	CardCharacter,
-	CardPlanet,
-	CardVehicle
-} from "/workspace/StarWars_Blog_Customized_API/StarWars_Blog/src/js/component/cards.js";
+import { CardCharacter, CardPlanet, CardVehicle } from "/workspace/StarWars_Blog/src/js/component/cards.js";
 
 import { Context } from "../store/appContext";
 
